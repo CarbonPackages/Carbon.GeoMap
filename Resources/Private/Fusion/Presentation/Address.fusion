@@ -19,13 +19,15 @@ prototype(Carbon.GeoMap:Presentation.Address) < prototype(Neos.Fusion:Component)
         <Neos.Fusion:Augmenter
             class={Carbon.String.merge('carbon-geomap-coordinate', props.class)}
             style={props.maxWith && props._hasCoords ? 'max-width:' + props.maxWith : null}
-            data-coordinate={props._hasCoords ? props.lat + ',' + props.lng : null}
+            data-coordinate={Json.stringify({lat:props.lat,lng:props.lng})}
+            data-coordinate.@if.set={props._hasCoords}
         >
             <Carbon.Notification:Backend
                 @if.set={!props._hasCoords} 
                 type='alert' 
                 content={I18n.translate('noCoordinates', 'No address could be found with the given data', [], 'Main', 'Carbon.GeoMap')}
             />
+
 
             {props._hasCoords && props.content && !props.renderContentAfterAddress ? props.content : null}
             <address class='carbon-geomap-address' @if.set={props._hasCoords && props.renderAddress}>

@@ -69,7 +69,10 @@ class MapHelper implements ProtectedContextAwareInterface
         $sqrt = sqrt($xcos * $xcos + $ycos * $ycos);
         $lat = atan2($zsin, $sqrt);
 
-        return [$lat * 180 / pi(), $lng * 180 / pi()];
+        return [
+            'lat' => $lat * 180 / pi(),
+            'lng' => $lng * 180 / pi()
+        ];
     }
 
     /**

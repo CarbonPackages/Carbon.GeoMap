@@ -16,13 +16,14 @@ const getMapCanvas = (element) => element.querySelector(".carbon-geomap__canvas"
 const getAddresses = (canvas) =>
     [...canvas.querySelectorAll(".carbon-geomap-coordinate")]
         .map((element) => {
-            const coordinate = element.dataset?.coordinate?.split(",");
+            const coordinate = JSON.parse(element.dataset?.coordinate || null);
             if (!coordinate) {
                 return null;
             }
             return {
                 html: element.outerHTML,
-                coordinate: [parseFloat(coordinate[0]), parseFloat(coordinate[1])],
+                lat: coordinate.lat,
+                lng: coordinate.lng,
             };
         })
         .filter((element) => element !== null);
