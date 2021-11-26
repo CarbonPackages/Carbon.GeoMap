@@ -1,0 +1,14 @@
+Neos:
+  Fusion:
+    defaultContext:
+      Carbon.GeoMap: 'Carbon\GeoMap\EelHelper\MapHelper'
+  Neos:
+    fusion:
+      autoInclude:
+        Carbon.GeoMap: true
+    userInterface:
+      translation:
+        autoInclude:
+          Carbon.GeoMap:
+            - 'Countries'
+            - 'NodeTypes/*'

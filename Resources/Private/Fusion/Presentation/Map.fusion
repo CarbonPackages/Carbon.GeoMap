@@ -1,0 +1,50 @@
+prototype(Carbon.GeoMap:Presentation.Map) < prototype(Neos.Fusion:Component) {
+    globalSettings = null
+    content = null
+    class = null
+
+    aspectRatio = '16 / 9'
+    mapStyle = ${this.data.mapStyle}
+
+    js = null
+    css = null
+
+    mode = 'live'
+    data = Neos.Fusion:DataStructure
+    coordinates = ${this.data.coordinates}
+    coordinates.@process {
+        calculate = ${Carbon.Array.check(value) ? Carbon.GeoMap.centerFromCoordinates(value) : null}
+        createObject = ${value ? {'center': value} : null}
+    }
+
+    settings = Neos.Fusion:DataStructure {
+        @process.filter = ${Array.filter(value)}
+    }
+
+    editable = ${this.data.editable}
+
+    @if.hasContentOrEditable = ${this.content || this.editable}
+    _settingsFromData = ${Type.isArray(this.data.settings) ? Array.filter(this.data.settings) : []}
+
+    renderer = afx`
+        <div
+            class={Carbon.String.merge(BEM.modifier('carbon-geomap', props.mode), props.class)}
+            style={props.mode == 'live' ? 'visibility:hidden' : null}
+            data-map={Json.stringify(Array.filter(Array.concat(props.coordinates, props.settings, props._settingsFromData)))}
+        >
+            <link @if.set={props.css} rel="stylesheet" href={props.css} data-slipstream />
+            <script
+                @if.set={props.data.js || props.js}
+                src={props.data.js || props.js}
+                data-slipstream defer 
+                data-settings={props.globalSettings ? Json.stringify(props.globalSettings) : null}
+            ></script>
+            <div
+                class={BEM.modifier('carbon-geomap__canvas', [props.mode, props.mapStyle])}
+                style={'aspect-ratio:' + props.aspectRatio}>
+                {props.content}
+            </div>
+            {props.inlineEditor}
+        </div>
+    `
+}

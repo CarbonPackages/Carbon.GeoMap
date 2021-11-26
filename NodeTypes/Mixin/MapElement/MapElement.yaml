@@ -1,0 +1,20 @@
+'Carbon.GeoMap:Mixin.MapElement':
+  abstract: true
+  superTypes:
+    'Carbon.CBD:Mixin.Element': true
+    # 'Carbon.GeoMap:Mixin.MaxZoom': true
+    # 'Carbon.GeoMap:Mixin.MapStyle': true
+  label: "${I18n.translate('label', 'Map with {0} addresses', [q(node).children().count()], 'NodeTypes/Mixin/MapElement', 'Carbon.GeoMap', q(node).children().count())}"
+  ui:
+    label: i18n
+    icon: map-marked
+    inspector:
+      groups:
+        map:
+          label: i18n
+          icon: map-marked
+          position: 10
+  # You need to set the constraint for you addresses
+  # constraints:
+  #   nodeTypes:
+  #     'Foo.Bar:Content:Address': true

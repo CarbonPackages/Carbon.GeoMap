@@ -1,0 +1,35 @@
+{
+    "name": "carbon/geomap",
+    "type": "neos-plugin",
+    "license": "GPL-3.0-or-later",
+    "description": "This package contains helpers for integrating geographical maps into Neos CMS. Live preview. Multiple addresses",
+    "keywords": [
+        "flow",
+        "neos",
+        "map"
+    ],
+    "authors": [
+        {
+            "name": "Jon Uhlmann",
+            "email": "hello@uhlmann.pro",
+            "homepage": "https://uhlmann.pro",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "neos/neos": "^7.2",
+        "carbon/notification": "^2.1",
+        "carbon/cbd": "^0.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Carbon\\GeoMap\\": "Classes"
+        }
+    },
+    "extra": {
+        "installer-name": "Carbon.GeoMap",
+        "neos": {
+            "package-key": "Carbon.GeoMap"
+        }
+    }
+}

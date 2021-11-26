@@ -1,0 +1,11 @@
+'Carbon.GeoMap:Mixin.AddressElement':
+  abstract: true
+  superTypes:
+    'Carbon.CBD:Mixin.Element.Item': true
+    'Carbon.GeoMap:Mixin.Name': true
+    'Carbon.GeoMap:Mixin.Address': true
+    'Carbon.GeoMap:Mixin.Text': true
+  label: "${Neos.Node.labelForNode(node).properties('title', 'name', 'text')}"
+  ui:
+    label: i18n
+    icon: map-marker

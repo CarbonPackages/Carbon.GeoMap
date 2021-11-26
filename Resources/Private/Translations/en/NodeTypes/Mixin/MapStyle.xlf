@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2"
+    xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="" product-name="Carbon.GeoMap" source-language="en" datatype="plaintext">
+        <body>
+            <trans-unit id="properties.mapStyle" xml:space="preserve">
+                <source>Map style</source>
+            </trans-unit>
+            <trans-unit id="properties.mapStyle.selectBoxEditor.placeholder" xml:space="preserve">
+                <source>Default</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

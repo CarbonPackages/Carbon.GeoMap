@@ -1,0 +1,28 @@
+prototype(Carbon.GeoMap:Mixin.MapElement) < prototype(Carbon.CBD:Component) {
+    # This needs to defined
+    type = null
+
+    @if.set = ${this.type}
+
+    prototype(Carbon.CBD:Presentation.Wrapper) {
+        reloadOnFirstInit = true
+        l18n.noContent = ${Carbon.Backend.translate('noAddress', 'No address has been created yet', [], 'Main', 'Carbon.GeoMap')}
+    }
+
+    data = Neos.Fusion:DataStructure {
+        editable = ${node.context.inBackend}
+        coordinates = Neos.Fusion:Map {
+            items = ${q(node).children('[instanceof Carbon.GeoMap:Mixin.Address]')}
+            itemRenderer = Neos.Fusion:DataStructure {
+                @if.set = ${this.lat && this.lng}
+                lat = ${q(item).property('lat')}
+                lng = ${q(item).property('lng')}
+            }
+            @process.filter = ${Array.filter(value)}
+        }
+        mapStyle = ${q(node).property('mapStyle')}
+        settings = Neos.Fusion:DataStructure {
+            maxZoom = ${q(node).property('maxZoom')}
+        }
+    }
+}
