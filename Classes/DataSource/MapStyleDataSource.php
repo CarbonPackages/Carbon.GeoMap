@@ -19,7 +19,7 @@ class MapStyleDataSource extends AbstractDataSource
     /**
      * @var string
      */
-    static protected $identifier = 'carbon-geomap-mapstyle';
+    protected static $identifier = 'carbon-geomap-mapstyle';
 
     /**
      * @Flow\Inject

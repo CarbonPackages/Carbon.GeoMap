@@ -19,7 +19,7 @@ class CountryDataSource extends AbstractDataSource
     /**
      * @var string
      */
-    static protected $identifier = 'carbon-geomap-country';
+    protected static $identifier = 'carbon-geomap-country';
 
     /**
      * @Flow\Inject
