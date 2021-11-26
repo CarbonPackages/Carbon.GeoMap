@@ -42,8 +42,8 @@ class MapHelper implements ProtectedContextAwareInterface
      */
     public function centerFromCoordinates(array $coords): ?array
     {
-        $count_coords = count($coords);
-        if ($count_coords === 0) {
+        $countCoords = count($coords);
+        if ($countCoords === 0) {
             return null;
         }
         $xcos = 0.0;
@@ -62,9 +62,9 @@ class MapHelper implements ProtectedContextAwareInterface
             $zsin += $csin;
         }
 
-        $xcos /= $count_coords;
-        $ycos /= $count_coords;
-        $zsin /= $count_coords;
+        $xcos /= $countCoords;
+        $ycos /= $countCoords;
+        $zsin /= $countCoords;
         $lng = atan2($ycos, $xcos);
         $sqrt = sqrt($xcos * $xcos + $ycos * $ycos);
         $lat = atan2($zsin, $sqrt);

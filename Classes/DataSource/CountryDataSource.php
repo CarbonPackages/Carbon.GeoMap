@@ -64,7 +64,10 @@ class CountryDataSource extends AbstractDataSource
             $countries[] = [
                 'label' => $value,
                 'value' => $key,
-                'preview' => $this->resourceManager->getPublicPackageResourceUri('Carbon.GeoMap', 'Flags/' . $key . '.svg'),
+                'preview' => $this->resourceManager->getPublicPackageResourceUri(
+                    'Carbon.GeoMap',
+                    sprintf('Flags/%s.svg', $key)
+                ),
             ];
         }
 
