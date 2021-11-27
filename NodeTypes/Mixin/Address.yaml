@@ -12,7 +12,6 @@
   properties:
     street:
       type: string
-      defaultValue: 'Ankerstrasse 7'
       ui:
         label: i18n
         reloadIfChanged: true
@@ -24,7 +23,6 @@
         'Neos.Neos/Validation/NotEmptyValidator': []
     city:
       type: string
-      defaultValue: '3006 Bern'
       ui:
         label: i18n
         reloadIfChanged: true
