@@ -1,6 +1,6 @@
 {
     "name": "carbon/geomap",
-    "type": "neos-plugin",
+    "type": "neos-carbon",
     "license": "GPL-3.0-or-later",
     "description": "This package contains helpers for integrating geographical maps into Neos CMS. Live preview. Multiple addresses",
     "keywords": [
