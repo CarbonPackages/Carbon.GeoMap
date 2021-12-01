@@ -32,56 +32,58 @@ class GeocodingService
     /**
      * @param NodeInterface $node
      * @param string $propertyName
-     * @param string|null $oldValue
-     * @param string|null $value
+     * @param mixed $oldValue
+     * @param mixed $value
      * @throws InfiniteRedirectionException
      */
     public function nodePropertyChanged(
         NodeInterface $node,
         string $propertyName,
-        ?string $oldValue = null,
-        ?string $value = null
+        $oldValue = null,
+        $value = null
     ): void {
         if (
-            $node->getNodeType()->isOfType('Carbon.GeoMap:Mixin.Address') &&
-            in_array($propertyName, ['street', 'city', 'country'])
+            !$node->getNodeType()->isOfType('Carbon.GeoMap:Mixin.Address') ||
+            !in_array($propertyName, ['street', 'city', 'country'])
         ) {
-            $node->setProperty('lat', '');
-            $node->setProperty('lng', '');
+            return;
+        }
 
-            if (empty($value) && $propertyName != 'country') {
-                return;
-            }
+        $node->setProperty('lat', '');
+        $node->setProperty('lng', '');
 
-            $street = $node->getProperty('street');
-            $city = $node->getProperty('city');
-            $country = $node->getProperty('country');
+        if (empty($value) && $propertyName != 'country') {
+            return;
+        }
 
-            if (empty($country)) {
-                $country = strtolower($this->defaultCountry);
-            }
-            $englishCountryName = $this->translationHelper->translate(
-                $country,
-                $country,
-                [],
-                'Countries',
-                'Carbon.GeoMap',
-                null,
-                'en'
-            );
-            $address = sprintf(
-                '%s, %s, %s',
-                $street,
-                $city,
-                $englishCountryName
-            );
+        $street = $node->getProperty('street');
+        $city = $node->getProperty('city');
+        $country = $node->getProperty('country');
 
-            $latLng = $this->geocodeLatLngFromAddress($address);
+        if (empty($country)) {
+            $country = strtolower($this->defaultCountry);
+        }
+        $englishCountryName = $this->translationHelper->translate(
+            $country,
+            $country,
+            [],
+            'Countries',
+            'Carbon.GeoMap',
+            null,
+            'en'
+        );
+        $address = sprintf(
+            '%s, %s, %s',
+            $street,
+            $city,
+            $englishCountryName
+        );
 
-            if ($latLng) {
-                $node->setProperty('lat', $latLng['lat']);
-                $node->setProperty('lng', $latLng['lng']);
-            }
+        $latLng = $this->geocodeLatLngFromAddress($address);
+
+        if ($latLng) {
+            $node->setProperty('lat', $latLng['lat']);
+            $node->setProperty('lng', $latLng['lng']);
         }
     }
 
