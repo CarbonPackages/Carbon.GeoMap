@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "neos/neos": "^7.3",
+        "neos/neos": "^7.3 || ^8.0",
         "carbon/notification": "^2.1",
         "carbon/cbd": "^0.2"
     },
