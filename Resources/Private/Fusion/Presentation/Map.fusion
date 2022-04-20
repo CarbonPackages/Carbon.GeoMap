@@ -25,6 +25,10 @@ prototype(Carbon.GeoMap:Presentation.Map) < prototype(Neos.Fusion:Component) {
 
     @if.hasContentOrEditable = ${this.content || this.editable}
     _settingsFromData = ${Type.isArray(this.data.settings) ? Array.filter(this.data.settings) : []}
+    
+    // https://github.com/sandstorm/Sandstorm.CookiePunch is installed
+    _sandstormCookiePunchIsInstalled = ${Configuration.setting('Neos.Neos.fusion.autoInclude')['Sandstorm.CookiePunch']}
+    dataNeverBlock = ${!!this._sandstormCookiePunchIsInstalled}
 
     renderer = afx`
         <div
@@ -36,6 +40,7 @@ prototype(Carbon.GeoMap:Presentation.Map) < prototype(Neos.Fusion:Component) {
             <script
                 @if.set={props.data.js || props.js}
                 src={props.data.js || props.js}
+                data-never-block={props.dataNeverBlock}
                 data-slipstream defer 
                 data-settings={props.globalSettings ? Json.stringify(props.globalSettings) : null}
             ></script>
