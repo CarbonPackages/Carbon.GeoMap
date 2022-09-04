@@ -10,7 +10,7 @@ prototype(Carbon.GeoMap:Mixin.AddressElement) < prototype(Neos.Neos:ContentCompo
 
 
     addressType = 'Carbon.GeoMap:Presentation.Address'
-    mapType = null
+    mapType = ${null}
 
     @if.hasAddressTypeAndMapType = ${this.addressType && this.mapType}
 
@@ -40,4 +40,3 @@ prototype(Carbon.GeoMap:Mixin.AddressElement) < prototype(Neos.Neos:ContentCompo
         }
     }
 }
-

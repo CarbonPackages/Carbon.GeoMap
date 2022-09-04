@@ -1,6 +1,6 @@
 prototype(Carbon.GeoMap:Mixin.MapElement) < prototype(Carbon.CBD:Component) {
     # This needs to defined
-    type = null
+    type = ${null}
 
     @if.set = ${this.type}
 

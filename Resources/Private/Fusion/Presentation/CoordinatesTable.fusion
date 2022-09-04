@@ -1,6 +1,6 @@
 prototype(Carbon.GeoMap:Presentation.CoordinatesTable) < prototype(Neos.Fusion:Component) {
-    lat = null
-    lng = null
+    lat = ${null}
+    lng = ${null}
 
     @if.hasNeededProps = ${this.lat && this.lng}
 

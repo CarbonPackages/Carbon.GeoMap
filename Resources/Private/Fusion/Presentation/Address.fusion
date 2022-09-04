@@ -1,11 +1,11 @@
 prototype(Carbon.GeoMap:Presentation.Address) < prototype(Neos.Fusion:Component) {
-    lat = null
-    lng = null
-    name = null
+    lat = ${null}
+    lng = ${null}
+    name = ${null}
     cbd = false
-    content = null
+    content = ${null}
     maxWith = '500px'
-    class = null
+    class = ${null}
 
     renderAddress = true
     renderContentAfterAddress = true
@@ -23,8 +23,8 @@ prototype(Carbon.GeoMap:Presentation.Address) < prototype(Neos.Fusion:Component)
             data-coordinate.@if.set={props._hasCoords}
         >
             <Carbon.Notification:Backend
-                @if.set={!props._hasCoords} 
-                type='alert' 
+                @if.set={!props._hasCoords}
+                type='alert'
                 content={I18n.translate('noCoordinates', 'No address could be found with the given data', [], 'Main', 'Carbon.GeoMap')}
             />
 
