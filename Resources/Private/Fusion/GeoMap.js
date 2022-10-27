@@ -11,19 +11,6 @@ const iconSettings = {
     popupAnchor: [0, -28],
 };
 
-const style = globalSettings.style;
-if (style && typeof style !== "string") {
-    let key = "light";
-    const basedOn = style.basedOn || "media";
-    if (
-        (basedOn === "media" && window.matchMedia("(prefers-color-scheme: dark)")?.matches) ||
-        (basedOn === "class" && DOCUMENT.documentElement.classList.contains("dark"))
-    ) {
-        key = "dark";
-    }
-    globalSettings.style = style[key];
-}
-
 const getMapCanvas = (element) => element.querySelector(".carbon-geomap__canvas");
 
 const getAddresses = (canvas) =>
@@ -61,7 +48,7 @@ const updateLatLngEditors = (editors, values) => {
 };
 
 const initFrontend = ({ className, initFunction }) => {
-    [...document.querySelectorAll(`.carbon-geomap.${className}`)].forEach((element) =>
+    [...DOCUMENT.querySelectorAll(`.carbon-geomap.${className}`)].forEach((element) =>
         initFunction({ element, live: true })
     );
 };
