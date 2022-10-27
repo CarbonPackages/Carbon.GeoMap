@@ -11,10 +11,12 @@ const iconSettings = {
     popupAnchor: [0, -28],
 };
 
-const getMapCanvas = (element) => element.querySelector(".carbon-geomap__canvas");
+function getMapCanvas(element) {
+    return element.querySelector(".carbon-geomap__canvas");
+}
 
-const getAddresses = (canvas) =>
-    [...canvas.querySelectorAll(".carbon-geomap-coordinate")]
+function getAddresses(canvas) {
+    return [...canvas.querySelectorAll(".carbon-geomap-coordinate")]
         .map((element) => {
             const coordinate = JSON.parse(element.dataset?.coordinate || null);
             if (!coordinate) {
@@ -27,33 +29,35 @@ const getAddresses = (canvas) =>
             };
         })
         .filter((element) => element !== null);
+}
 
-const getEditor = (element, key) =>
-    element.querySelector(`.carbon-geomap-coordinatestable__${key} .neos-inline-editable`)?.firstElementChild;
+function getEditor(element, key) {
+    return element.querySelector(`.carbon-geomap-coordinatestable__${key} .neos-inline-editable`)?.firstElementChild;
+}
 
-const getLatLngEditors = (element) => {
+function getLatLngEditors(element) {
     const lat = getEditor(element, "lat");
     const lng = getEditor(element, "lng");
 
     return lat && lng ? { lat, lng } : null;
-};
+}
 
-const updateEditor = (editor, value) => {
+function updateEditor(editor, value) {
     editor.innerText = value.toString();
-};
+}
 
-const updateLatLngEditors = (editors, values) => {
+function updateLatLngEditors(editors, values) {
     updateEditor(editors.lat, values.lat);
     updateEditor(editors.lng, values.lng);
-};
+}
 
-const initFrontend = ({ className, initFunction }) => {
+function initFrontend({ className, initFunction }) {
     [...DOCUMENT.querySelectorAll(`.carbon-geomap.${className}`)].forEach((element) =>
         initFunction({ element, live: true })
     );
-};
+}
 
-const initBackend = ({ className, initFunction, nodeType }) => {
+function initBackend({ className, initFunction, nodeType }) {
     if (typeof className !== "string" || typeof initFunction !== "function" || typeof nodeType !== "string") {
         console.error(
             "Invalid backend edit initialization: You need to set className, initFunction and nodeType correctly",
@@ -98,7 +102,7 @@ const initBackend = ({ className, initFunction, nodeType }) => {
             [...element.querySelectorAll(editClassName)].forEach((element) => initFunction({ element, live: false }));
         }, 10);
     });
-};
+}
 
 export {
     globalSettings,
