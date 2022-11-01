@@ -32,7 +32,7 @@ prototype(Carbon.GeoMap:Presentation.Map) < prototype(Neos.Fusion:Component) {
 
     renderer = afx`
         <div
-            class={Carbon.String.merge(BEM.modifier('carbon-geomap', props.mode), props.class)}
+            class={Carbon.String.merge(BEM.modifier('carbon-geomap', props.mode), props.class, props.additionalClass)}
             style={props.mode == 'live' ? 'visibility:hidden' : null}
             data-map={Json.stringify(Array.filter(Array.concat(props.coordinates, props.settings, props._settingsFromData)))}
         >
