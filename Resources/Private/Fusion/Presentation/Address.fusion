@@ -18,7 +18,6 @@ prototype(Carbon.GeoMap:Presentation.Address) < prototype(Neos.Fusion:Component)
     @if.hasNeededProps = ${this.editable || this._hasCoords}
 
     renderer = afx`
-        <Neos.Fusion:Debug.Console props={{renderPopup:props.renderPopup,renderAddress:props.renderAddress,renderCountry:props.renderCountry}} />
         <Neos.Fusion:Augmenter
             class={Carbon.String.merge('carbon-geomap-coordinate', props.class)}
             style={props.maxWith && props._hasCoords ? 'max-width:' + props.maxWith : null}
