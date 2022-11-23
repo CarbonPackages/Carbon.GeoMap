@@ -30,7 +30,7 @@ prototype(Carbon.GeoMap:Presentation.Address) < prototype(Neos.Fusion:Component)
 
 
             {props._hasCoords && props.content && !props.renderContentAfterAddress ? props.content : null}
-            <address class='carbon-geomap-address' @if.set={props._hasCoords && props.renderAddress}>
+            <address class='carbon-geomap-address' @if.set={props._hasCoords && props.renderAddress && (props.name || props.street || props.city || props.country)}>
                 <strong @if.set={props.name} class='carbon-geomap-address__name'>{props.name} </strong>
                 <span @if.set={props.street} class='carbon-geomap-address__street'>{props.street} </span>
                 <span @if.set={props.city} class='carbon-geomap-address__city'>{props.city} </span>
