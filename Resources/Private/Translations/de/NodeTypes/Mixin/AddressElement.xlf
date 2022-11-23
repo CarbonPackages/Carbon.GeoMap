@@ -7,6 +7,22 @@
                 <source>Address</source>
                 <target>Adresse</target>
             </trans-unit>
+            <trans-unit id="groups.settings" xml:space="preserve">
+                <source>Settings</source>
+                <target>Einstellungen</target>
+            </trans-unit>
+            <trans-unit id="properties.renderPopup" xml:space="preserve">
+                <source>Show Popup</source>
+                <target>Zeige Popup</target>
+            </trans-unit>
+            <trans-unit id="properties.renderAddress" xml:space="preserve">
+                <source>Show address</source>
+                <target>Zeige Adresse</target>
+            </trans-unit>
+            <trans-unit id="properties.renderCountry" xml:space="preserve">
+                <source>Show country</source>
+                <target>Zeige Land</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

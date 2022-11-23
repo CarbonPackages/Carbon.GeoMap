@@ -9,3 +9,43 @@
   ui:
     label: i18n
     icon: map-marker
+    inspector:
+      groups:
+        settings:
+          label: i18n
+          icon: paint-brush
+          position: 10
+  properties:
+    renderPopup:
+      defaultValue: true
+      type: boolean
+      ui:
+        label: i18n
+        reloadPageIfChanged: true
+        inspector:
+          group: settings
+          position: 10
+    renderAddress:
+      defaultValue: true
+      type: boolean
+      ui:
+        label: i18n
+        reloadPageIfChanged: true
+        inspector:
+          group: settings
+          position: 20
+          hidden: 'ClientEval:node.properties.showPopup == false'
+    renderCountry:
+      defaultValue: true
+      type: boolean
+      ui:
+        label: i18n
+        reloadPageIfChanged: true
+        inspector:
+          group: settings
+          position: 30
+          hidden: 'ClientEval:node.properties.renderPopup == false || node.properties.renderAddress == false'
+    text:
+      ui:
+        inspector:
+          hidden: 'ClientEval:node.properties.renderPopup == false'

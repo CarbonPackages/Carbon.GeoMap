@@ -6,6 +6,18 @@
             <trans-unit id="ui.label" xml:space="preserve">
                 <source>Address</source>
             </trans-unit>
+            <trans-unit id="groups.settings" xml:space="preserve">
+                <source>Settings</source>
+            </trans-unit>
+            <trans-unit id="properties.renderPopup" xml:space="preserve">
+                <source>Show Popup</source>
+            </trans-unit>
+            <trans-unit id="properties.renderAddress" xml:space="preserve">
+                <source>Show address</source>
+            </trans-unit>
+            <trans-unit id="properties.renderCountry" xml:space="preserve">
+                <source>Show country</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

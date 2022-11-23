@@ -6,6 +6,9 @@ prototype(Carbon.GeoMap:Mixin.AddressElement) < prototype(Neos.Neos:ContentCompo
     lat = ${q(node).property('lat')}
     lng = ${q(node).property('lng')}
     content = ${q(node).property('text')}
+    renderPopup = ${q(node).property('renderPopup')}
+    renderAddress = ${q(node).property('renderAddress')}
+    renderCountry = ${q(node).property('renderCountry')}
     editable = ${node.context.inBackend}
 
 
@@ -25,7 +28,7 @@ prototype(Carbon.GeoMap:Mixin.AddressElement) < prototype(Neos.Neos:ContentCompo
             element.mode = 'edit'
             element.editable = true
             element.coordinates = ${[{'lat': props.lat, 'lng': props.lng}]}
-            element.content = ${value}
+            element.showPopup = ${value}
             element.mapStyle = ${q(node).parent().property('mapStyle')}
             element.inlineEditor = Carbon.GeoMap:Presentation.CoordinatesTable {
                 lat = Neos.Neos:Editable {
