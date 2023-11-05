@@ -31,7 +31,6 @@ prototype(Carbon.GeoMap:Presentation.Map) < prototype(Neos.Fusion:Component) {
         }
 
         renderer = afx`
-            <Neos.Fusion:Debug.Console console={Array.filter(Array.concat(props.mapData, props.settings))} />
             <div
                 style="visibility: hidden"
                 class={Carbon.String.merge('carbon-geomap', props.class, props.additionalClass)}
