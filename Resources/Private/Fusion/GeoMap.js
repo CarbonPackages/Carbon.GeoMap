@@ -1,21 +1,3 @@
-import {
-    globalSettings,
-    iconSettings,
-    getMapCanvas,
-    getAddresses,
-    getLatLngEditors,
-    updateLatLngEditors,
-    initBackend,
-    initFrontend,
-} from "carbon-geomap";
+import { globalSettings, iconSettings, getMapCanvas, getAddresses, initBackend, initFrontend } from "carbon-geomap";
 
-export {
-    globalSettings,
-    iconSettings,
-    getMapCanvas,
-    getAddresses,
-    getLatLngEditors,
-    updateLatLngEditors,
-    initBackend,
-    initFrontend,
-};
+export { globalSettings, iconSettings, getMapCanvas, getAddresses, initBackend, initFrontend };

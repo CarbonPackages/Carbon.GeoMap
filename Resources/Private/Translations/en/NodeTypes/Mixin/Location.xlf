@@ -3,11 +3,8 @@
     xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file original="" product-name="Carbon.GeoMap" source-language="en" datatype="plaintext">
         <body>
-            <trans-unit id="properties.lat" xml:space="preserve">
-                <source>Latitude</source>
-            </trans-unit>
-            <trans-unit id="properties.lng" xml:space="preserve">
-                <source>Longitude</source>
+            <trans-unit id="properties.location" xml:space="preserve">
+                <source>Location</source>
             </trans-unit>
         </body>
     </file>

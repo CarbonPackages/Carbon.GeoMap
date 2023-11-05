@@ -1,7 +1,7 @@
 {
     "name": "carbon-geomap",
     "description": "Dependencies for Carbon.GeoMap",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "main": "dist/module.mjs",
     "module": "dist/module.mjs",
     "exports": {

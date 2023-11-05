@@ -1,28 +1,47 @@
-prototype(Carbon.GeoMap:Mixin.MapElement) < prototype(Carbon.CBD:Component) {
+prototype(Carbon.GeoMap:Mixin.MapElement) < prototype(Neos.Neos:ContentComponent) {
     # This needs to defined
-    type = ${null}
+    type = null
 
-    @if.set = ${this.type}
+    addresses = ${q(node).children('[instanceof Carbon.GeoMap:Mixin.Address]')}
+    mapStyle = ${q(node).property('mapStyle')}
 
-    prototype(Carbon.CBD:Presentation.Wrapper) {
-        reloadOnFirstInit = true
-        l18n.noContent = ${Carbon.Backend.translate('noAddress', 'No address has been created yet', [], 'Main', 'Carbon.GeoMap')}
+    settings = Neos.Fusion:DataStructure {
+        maxZoom = ${q(node).property('maxZoom')}
     }
 
-    data = Neos.Fusion:DataStructure {
-        editable = ${node.context.inBackend}
+    @if.hasType = ${this.type}
+
+    renderer = Neos.Fusion:Component {
+        @apply.props = ${props}
         coordinates = Neos.Fusion:Map {
-            items = ${q(node).children('[instanceof Carbon.GeoMap:Mixin.Address]')}
-            itemRenderer = Neos.Fusion:DataStructure {
-                @if.set = ${this.lat && this.lng}
-                lat = ${q(item).property('lat')}
-                lng = ${q(item).property('lng')}
-            }
+            items = ${props.addresses}
+            itemRenderer = ${q(item).property('location')}
             @process.filter = ${Array.filter(value)}
         }
-        mapStyle = ${q(node).property('mapStyle')}
-        settings = Neos.Fusion:DataStructure {
-            maxZoom = ${q(node).property('maxZoom')}
+        content = Neos.Neos:ContentCollectionRenderer
+
+        renderer = Neos.Fusion:Match {
+            @subject = ${Carbon.Array.length(props.coordinates)}
+            @default = afx` <Neos.Fusion:Renderer type={props.type} element.@apply.data={props}/>`
+            0 = Carbon.Notification:Backend {
+                content = ${Carbon.Backend.translate('noAddress', 'No address has been created yet', [], 'Main', 'Carbon.GeoMap')}
+            }
         }
     }
+
+    @context.type = ${this.type}
+    @cache {
+        mode = 'cached'
+        entryIdentifier {
+            collection = ${node}
+            type = ${type}
+        }
+        entryTags {
+            1 = ${Neos.Caching.nodeTag(node)}
+            2 = ${Neos.Caching.descendantOfTag(node)}
+        }
+        maximumLifetime = ${q(node).context({'invisibleContentShown': true}).children().cacheLifetime()}
+    }
+
+    @exceptionHandler = 'Neos\\Neos\\Fusion\\ExceptionHandlers\\NodeWrappingHandler'
 }

@@ -19,7 +19,7 @@
     "require": {
         "neos/neos": "^7.3 || ^8.0",
         "carbon/notification": "^2.1",
-        "carbon/cbd": "^0.2"
+        "carbon/geomapeditor": "^0.1.1"
     },
     "autoload": {
         "psr-4": {

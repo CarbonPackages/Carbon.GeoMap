@@ -49,8 +49,7 @@ class GeocodingService
             return;
         }
 
-        $node->setProperty('lat', '');
-        $node->setProperty('lng', '');
+        $node->setProperty('location', null);
 
         if (empty($value) && $propertyName != 'country') {
             return;
@@ -82,8 +81,7 @@ class GeocodingService
         $latLng = $this->geocodeLatLngFromAddress($address);
 
         if ($latLng) {
-            $node->setProperty('lat', $latLng['lat']);
-            $node->setProperty('lng', $latLng['lng']);
+            $node->setProperty('location', $latLng);
         }
     }
 
@@ -104,8 +102,8 @@ class GeocodingService
             $json = json_decode($jsonContent, true);
             if (isset($json[0]) && isset($json[0]['lat']) && isset($json[0]['lon'])) {
                 return [
-                    'lat' => $json[0]['lat'],
-                    'lng' => $json[0]['lon'],
+                    'lat' => (float)$json[0]['lat'],
+                    'lng' => (float)$json[0]['lon'],
                 ];
             }
         }

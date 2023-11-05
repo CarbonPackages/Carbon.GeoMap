@@ -1,55 +1,56 @@
 prototype(Carbon.GeoMap:Presentation.Map) < prototype(Neos.Fusion:Component) {
-    globalSettings = ${null}
-    content = ${null}
-    class = ${null}
+    globalSettings = null
+    content = null
+    class = null
+    additionalClass = null
 
     aspectRatio = '16 / 9'
-    mapStyle = ${this.data.mapStyle}
+    mapStyle = null
 
-    js = ${null}
-    css = ${null}
+    js = null
+    css = null
 
-    mode = 'live'
-    data = Neos.Fusion:DataStructure
-    coordinates = ${this.data.coordinates}
-    coordinates.@process {
-        calculate = ${Carbon.Array.check(value) ? Carbon.GeoMap.centerFromCoordinates(value) : null}
-        createObject = ${value ? {'center': value} : null}
-    }
+    coordinates = null
 
     settings = Neos.Fusion:DataStructure {
         @process.filter = ${Array.filter(value)}
     }
 
-    editable = ${this.data.editable}
 
-    @if.hasContentOrEditable = ${this.content || this.editable}
-    _settingsFromData = ${Type.isArray(this.data.settings) ? Array.filter(this.data.settings) : []}
+    @if.hasContent = ${this.content}
 
-    // https://github.com/sandstorm/Sandstorm.CookiePunch is installed
-    _sandstormCookiePunchIsInstalled = ${Configuration.setting('Neos.Neos.fusion.autoInclude')['Sandstorm.CookiePunch']}
-    dataNeverBlock = ${!!this._sandstormCookiePunchIsInstalled}
+    renderer = Neos.Fusion:Component {
+        @apply.props = ${props}
 
-    renderer = afx`
-        <div
-            class={Carbon.String.merge(BEM.modifier('carbon-geomap', props.mode), props.class, props.additionalClass)}
-            style={props.mode == 'live' ? 'visibility:hidden' : null}
-            data-map={Json.stringify(Array.filter(Array.concat(props.coordinates, props.settings, props._settingsFromData)))}
-        >
-            <link @if.set={props.css} rel="stylesheet" href={props.css} data-slipstream />
-            <script
-                @if.set={props.data.js || props.js}
-                src={props.data.js || props.js}
-                data-never-block={props.dataNeverBlock}
-                data-slipstream defer
-                data-settings={props.globalSettings ? Json.stringify(props.globalSettings) : null}
-            ></script>
+        // https://github.com/sandstorm/Sandstorm.CookiePunch is installed
+        _sandstormCookiePunchIsInstalled = ${Configuration.setting('Neos.Neos.fusion.autoInclude')['Sandstorm.CookiePunch']}
+        dataNeverBlock = ${!!this._sandstormCookiePunchIsInstalled}
+
+        mapData = Neos.Fusion:DataStructure {
+            center = ${Carbon.Array.check(props.coordinates) ? Carbon.GeoMap.centerFromCoordinates(props.coordinates) : null}
+        }
+
+        renderer = afx`
+            <Neos.Fusion:Debug.Console console={Array.filter(Array.concat(props.mapData, props.settings))} />
             <div
-                class={BEM.modifier('carbon-geomap__canvas', [props.mode, props.mapStyle])}
-                style={'aspect-ratio:' + props.aspectRatio}>
-                {props.content}
+                style="visibility: hidden"
+                class={Carbon.String.merge('carbon-geomap', props.class, props.additionalClass)}
+                data-map={Json.stringify(Array.filter(Array.concat(props.mapData, props.settings)))}
+            >
+                <link @if.set={props.css} rel="stylesheet" href={props.css} data-slipstream />
+                <script
+                    @if.set={props.js}
+                    src={props.js}
+                    data-never-block={props.dataNeverBlock}
+                    data-slipstream defer
+                    data-settings={props.globalSettings ? Json.stringify(props.globalSettings) : null}
+                ></script>
+                <div
+                    class={BEM.modifier('carbon-geomap__canvas', props.mapStyle)}
+                    style={'aspect-ratio:' + props.aspectRatio}>
+                    {props.content}
+                </div>
             </div>
-            {props.inlineEditor}
-        </div>
-    `
+        `
+    }
 }

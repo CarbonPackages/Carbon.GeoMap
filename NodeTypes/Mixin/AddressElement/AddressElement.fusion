@@ -3,8 +3,7 @@ prototype(Carbon.GeoMap:Mixin.AddressElement) < prototype(Neos.Neos:ContentCompo
     street = ${q(node).property('street')}
     city = ${q(node).property('city')}
     country = ${q(node).property('country')}
-    lat = ${q(node).property('lat')}
-    lng = ${q(node).property('lng')}
+    location = ${q(node).property('location')}
     content = ${q(node).property('text')}
     renderPopup = ${q(node).property('renderPopup')}
     renderAddress = ${q(node).property('renderAddress')}
@@ -12,34 +11,14 @@ prototype(Carbon.GeoMap:Mixin.AddressElement) < prototype(Neos.Neos:ContentCompo
     editable = ${node.context.inBackend}
 
 
-    addressType = 'Carbon.GeoMap:Presentation.Address'
-    mapType = ${null}
+    type = 'Carbon.GeoMap:Presentation.Address'
 
-    @if.hasAddressTypeAndMapType = ${this.addressType && this.mapType}
+    @if.hasType = ${this.type}
 
-    renderer = Neos.Fusion:Renderer {
-        type = ${props.addressType}
-        element = Neos.Fusion:DataStructure {
-            @apply.props = ${props}
-        }
-        @process.wrap = Neos.Fusion:Renderer {
-            @if.inCBDModeAndHasCoordinates = ${props.cbd && props.lat && props.lng}
-            type = ${props.mapType}
-            element.mode = 'edit'
-            element.editable = true
-            element.coordinates = ${[{'lat': props.lat, 'lng': props.lng}]}
-            element.showPopup = ${value}
-            element.mapStyle = ${q(node).parent().property('mapStyle')}
-            element.inlineEditor = Carbon.GeoMap:Presentation.CoordinatesTable {
-                lat = Neos.Neos:Editable {
-                    property = 'lat'
-                    block = false
-                }
-                lng = Neos.Neos:Editable {
-                    property = 'lng'
-                    block = false
-                }
-            }
-        }
-    }
+    renderer = afx`
+        <Neos.Fusion:Renderer
+            type={props.type}
+            element.@apply.data={props}
+        />
+    `
 }

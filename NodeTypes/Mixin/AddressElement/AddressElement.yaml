@@ -1,7 +1,7 @@
 'Carbon.GeoMap:Mixin.AddressElement':
   abstract: true
   superTypes:
-    'Carbon.CBD:Mixin.Element.Item': true
+    'Neos.Neos:Content': true
     'Carbon.GeoMap:Mixin.Name': true
     'Carbon.GeoMap:Mixin.Address': true
     'Carbon.GeoMap:Mixin.Text': true
@@ -9,6 +9,7 @@
   ui:
     label: i18n
     icon: map-marker
+    inlineEditable: true
     inspector:
       groups:
         settings:
@@ -49,3 +50,9 @@
       ui:
         inspector:
           hidden: 'ClientEval:node.properties.renderPopup == false'
+
+
+'Neos.Neos:ContentCollection':
+  constraints:
+    nodeTypes:
+      'Carbon.GeoMap:Mixin.AddressElement': false

@@ -1,0 +1,15 @@
+up:
+  comments: 'Save lat and lng properties to location property'
+  migration:
+    - filters:
+        - type: 'NodeType'
+          settings:
+            nodeType: 'Carbon.GeoMap:Mixin.Address'
+            withSubTypes: true
+      transformations:
+        - type: 'Carbon\GeoMap\Migrations\LocationMigration'
+          settings: []
+
+
+down:
+  comments: 'No down migration available'

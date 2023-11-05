@@ -1,45 +1,42 @@
 prototype(Carbon.GeoMap:Presentation.Address) < prototype(Neos.Fusion:Component) {
-    lat = ${null}
-    lng = ${null}
-    name = ${null}
-    cbd = false
-    content = ${null}
+    location = null
+    name = null
+    street = null
+    city = null
+    country = null
+    content = null
     maxWith = '500px'
-    class = ${null}
+    class = null
 
     renderPopup = true
     renderAddress = true
     renderCountry = true
     renderContentAfterAddress = true
 
-    editable = false
-
-    _hasCoords = ${this.lat && this.lng}
-    @if.hasNeededProps = ${this.editable || this._hasCoords}
+    _hasCoords = ${this.location && this.location.lat && this.location.lng}
 
     renderer = afx`
+        <Carbon.Notification:Backend
+            @if={!props._hasCoords}
+            type='alert'
+            content={I18n.translate('noCoordinates', 'No address could be found with the given data', [], 'Main', 'Carbon.GeoMap')}
+        />
         <Neos.Fusion:Augmenter
+            @if={props._hasCoords}
             class={Carbon.String.merge('carbon-geomap-coordinate', props.class)}
-            style={props.maxWith && props._hasCoords ? 'max-width:' + props.maxWith : null}
-            data-coordinate={Json.stringify({lat:props.lat,lng:props.lng})}
-            data-coordinate.@if.set={props._hasCoords}
+            style={props.maxWith ? 'max-width:' + props.maxWith : null}
+            data-coordinate={Json.stringify(props.location)}
         >
-            <Carbon.Notification:Backend
-                @if.set={!props._hasCoords}
-                type='alert'
-                content={I18n.translate('noCoordinates', 'No address could be found with the given data', [], 'Main', 'Carbon.GeoMap')}
-            />
-
-            {props._hasCoords && props.content && !props.renderContentAfterAddress && props.renderPopup ? props.content : null}
-            <address class='carbon-geomap-address' @if.set={props._hasCoords && props.renderPopup && props.renderAddress && (props.name || props.street || props.city || props.country)}>
-                <strong @if.set={props.name} class='carbon-geomap-address__name'>{props.name} </strong>
-                <span @if.set={props.street} class='carbon-geomap-address__street'>{props.street} </span>
-                <span @if.set={props.city} class='carbon-geomap-address__city'>{props.city} </span>
-                <span @if.set={props.country && props.renderCountry} class='carbon-geomap-address__country'>
+            {props.content && !props.renderContentAfterAddress && props.renderPopup ? props.content : null}
+            <address class='carbon-geomap-address' @if={props.renderPopup && props.renderAddress && (props.name || props.street || props.city || props.country)}>
+                <strong @if={props.name} class='carbon-geomap-address__name'>{props.name} </strong>
+                <span @if={props.street} class='carbon-geomap-address__street'>{props.street} </span>
+                <span @if={props.city} class='carbon-geomap-address__city'>{props.city} </span>
+                <span @if={props.country && props.renderCountry} class='carbon-geomap-address__country'>
                     {Translation.translate(props.country, String.toUpperCase(props.country), [], 'Countries', 'Carbon.GeoMap')}
                 </span>
             </address>
-            {props._hasCoords && props.content && props.renderContentAfterAddress && props.renderPopup ? props.content : null}
+            {props.content && props.renderContentAfterAddress && props.renderPopup ? props.content : null}
         </Neos.Fusion:Augmenter>
     `
 }
