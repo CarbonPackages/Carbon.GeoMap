@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2"
+    xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="" product-name="Carbon.GeoMap" source-language="en" target-language="de" datatype="plaintext">
+        <body>
+            <trans-unit id="1" xml:space="preserve">
+                <source>4000 km</source>
+                <target>4000 km</target>
+            </trans-unit>
+            <trans-unit id="2" xml:space="preserve">
+                <source>2000 km (World)</source>
+                <target>2000 km (Welt)</target>
+            </trans-unit>
+            <trans-unit id="3" xml:space="preserve">
+                <source>1000 km</source>
+                <target>1000 km</target>
+            </trans-unit>
+            <trans-unit id="4" xml:space="preserve">
+                <source>400 km (Continent)</source>
+                <target>400 km (Kontinent)</target>
+            </trans-unit>
+            <trans-unit id="5" xml:space="preserve">
+                <source>200 km</source>
+                <target>200 km</target>
+            </trans-unit>
+            <trans-unit id="6" xml:space="preserve">
+                <source>100 km (Country)</source>
+                <target>100 km (Land)</target>
+            </trans-unit>
+            <trans-unit id="7" xml:space="preserve">
+                <source>50 km</source>
+                <target>50 km</target>
+            </trans-unit>
+            <trans-unit id="8" xml:space="preserve">
+                <source>30 km</source>
+                <target>30 km</target>
+            </trans-unit>
+            <trans-unit id="9" xml:space="preserve">
+                <source>15 km (Area)</source>
+                <target>15 km (Gebiet)</target>
+            </trans-unit>
+            <trans-unit id="10" xml:space="preserve">
+                <source>8 km</source>
+                <target>8 km</target>
+            </trans-unit>
+            <trans-unit id="11" xml:space="preserve">
+                <source>4 km</source>
+                <target>4 km</target>
+            </trans-unit>
+            <trans-unit id="12" xml:space="preserve">
+                <source>2 km (City)</source>
+                <target>2 km (Stadt)</target>
+            </trans-unit>
+            <trans-unit id="13" xml:space="preserve">
+                <source>1 km</source>
+                <target>1 km</target>
+            </trans-unit>
+            <trans-unit id="14" xml:space="preserve">
+                <source>400 m (Neighborhood)</source>
+                <target>400 m (Stadtviertel)</target>
+            </trans-unit>
+            <trans-unit id="15" xml:space="preserve">
+                <source>200 m</source>
+                <target>200 m</target>
+            </trans-unit>
+            <trans-unit id="16" xml:space="preserve">
+                <source>100 m</source>
+                <target>100 m</target>
+            </trans-unit>
+            <trans-unit id="17" xml:space="preserve">
+                <source>50 m (Street)</source>
+                <target>50 m (Strasse)</target>
+            </trans-unit>
+            <trans-unit id="18" xml:space="preserve">
+                <source>20 m</source>
+            </trans-unit>
+            <trans-unit id="19" xml:space="preserve">
+                <source>10 m</source>
+                <target>10 m</target>
+            </trans-unit>
+            <trans-unit id="20" xml:space="preserve">
+                <source>5 m (House)</source>
+                <target>5 m (Haus)</target>
+            </trans-unit>
+            <trans-unit id="21" xml:space="preserve">
+                <source>2.5 m</source>
+                <target>2.5 m</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

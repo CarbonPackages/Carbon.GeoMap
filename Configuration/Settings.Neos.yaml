@@ -11,4 +11,5 @@ Neos:
         autoInclude:
           Carbon.GeoMap:
             - 'Countries'
+            - 'ZoomLevel'
             - 'NodeTypes/*'
