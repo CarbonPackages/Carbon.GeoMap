@@ -2,7 +2,7 @@ prototype(Carbon.GeoMap:Mixin.MapElement) < prototype(Neos.Neos:ContentComponent
     # This needs to defined
     type = null
 
-    addresses = ${q(node).children('[instanceof Carbon.GeoMap:Mixin.Address]')}
+    addresses = ${q(node).children('[instanceof Carbon.GeoMap:Mixin.Address]') || []}
     mapStyle = ${q(node).property('mapStyle')}
 
     settings = Neos.Fusion:DataStructure {
@@ -23,9 +23,11 @@ prototype(Carbon.GeoMap:Mixin.MapElement) < prototype(Neos.Neos:ContentComponent
         renderer = Neos.Fusion:Match {
             @subject = ${Carbon.Array.length(props.coordinates)}
             @default = afx` <Neos.Fusion:Renderer type={props.type} element.@apply.data={props}/>`
-            0 = Carbon.Notification:Backend {
-                content = ${Carbon.Backend.translate('noAddress', 'No address has been created yet', [], 'Main', 'Carbon.GeoMap')}
-            }
+            0 = afx`
+                <Carbon.Notification:Backend
+                    content={Carbon.Backend.translate('noAddress', 'No address has been created yet', [], 'Main', 'Carbon.GeoMap')}
+                />{''}
+            `
         }
     }
 
