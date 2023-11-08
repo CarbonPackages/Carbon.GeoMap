@@ -3,9 +3,9 @@
     xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file original="" product-name="Carbon.GeoMap" source-language="en" target-language="de" datatype="plaintext">
         <body>
-            <trans-unit id="properties.maxZoom" xml:space="preserve">
-                <source>Maxium zoom</source>
-                <target>Maximaler Zoom</target>
+            <trans-unit id="properties.zoom" xml:space="preserve">
+                <source>Initial zoom</source>
+                <target>Initialer Zoom</target>
             </trans-unit>
         </body>
     </file>

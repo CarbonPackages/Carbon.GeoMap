@@ -9,6 +9,18 @@
             <trans-unit id="noAddress" xml:space="preserve">
                 <source>No address has been created yet</source>
             </trans-unit>
+            <trans-unit id="noType" xml:space="preserve">
+                 <source>The prototype for the rendering is not defined</source>
+            </trans-unit>
+            <trans-unit id="wrongType" xml:space="preserve">
+                <source><![CDATA[The prottype <code>{0}</code> could not be found]]></source>
+            </trans-unit>
+            <trans-unit id="openRoute" xml:space="preserve">
+                <source>Open route to this place on Google Maps</source>
+            </trans-unit>
+            <trans-unit id="route" xml:space="preserve">
+                <source>Route</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

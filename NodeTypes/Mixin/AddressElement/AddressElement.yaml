@@ -5,6 +5,7 @@
     'Carbon.GeoMap:Mixin.Name': true
     'Carbon.GeoMap:Mixin.Address': true
     'Carbon.GeoMap:Mixin.Text': true
+    'Carbon.GeoMap:Mixin.PinColor': true
   label: "${Neos.Node.labelForNode(node).properties('title', 'name', 'text')}"
   ui:
     label: i18n

@@ -1,9 +1,9 @@
-'Carbon.GeoMap:Mixin.MaxZoom':
+'Carbon.GeoMap:Mixin.Zoom':
   abstract: true
   properties:
-    maxZoom:
+    zoom:
       type: integer
-      defaultValue: 20
+      defaultValue: 14
       ui:
         label: i18n
         reloadPageIfChanged: true

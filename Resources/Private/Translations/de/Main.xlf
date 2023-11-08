@@ -11,6 +11,22 @@
                 <source>No address has been created yet</source>
                 <target>Es wurde noch keine Adresse erstellt</target>
             </trans-unit>
+            <trans-unit id="noType" xml:space="preserve">
+                <source>The prototype for the rendering is not defined</source>
+                <target>Der Prototype zum rendern ist nicht definiert</target>
+            </trans-unit>
+            <trans-unit id="wrongType" xml:space="preserve">
+                <source><![CDATA[The prottype <code>{0}</code> could not be found]]></source>
+                <target><![CDATA[Der Prototyp <code>{0}</code> konnte nicht gefunden werden]]></target>
+            </trans-unit>
+            <trans-unit id="openRoute" xml:space="preserve">
+                <source>Open route to this place on Google Maps</source>
+                <target>Route zu diesem Ort auf Google Maps öffnen</target>
+            </trans-unit>
+            <trans-unit id="route" xml:space="preserve">
+                <source>Route</source>
+                <target>Route</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

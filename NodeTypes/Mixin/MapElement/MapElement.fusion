@@ -3,13 +3,8 @@ prototype(Carbon.GeoMap:Mixin.MapElement) < prototype(Neos.Neos:ContentComponent
     type = null
 
     addresses = ${q(node).children('[instanceof Carbon.GeoMap:Mixin.Address]') || []}
-    mapStyle = ${q(node).property('mapStyle')}
 
-    settings = Neos.Fusion:DataStructure {
-        maxZoom = ${q(node).property('maxZoom')}
-    }
-
-    @if.hasType = ${this.type}
+    zoom = ${q(node).property('zoom')}
 
     renderer = Neos.Fusion:Component {
         @apply.props = ${props}
@@ -20,14 +15,35 @@ prototype(Carbon.GeoMap:Mixin.MapElement) < prototype(Neos.Neos:ContentComponent
         }
         content = Neos.Neos:ContentCollectionRenderer
 
-        renderer = Neos.Fusion:Match {
-            @subject = ${Carbon.Array.length(props.coordinates)}
-            @default = afx` <Neos.Fusion:Renderer type={props.type} element.@apply.data={props}/>`
-            0 = afx`
-                <Carbon.Notification:Backend
-                    content={Carbon.Backend.translate('noAddress', 'No address has been created yet', [], 'Main', 'Carbon.GeoMap')}
-                />{''}
-            `
+        renderer = Neos.Fusion:Case {
+            noType {
+                condition = ${!props.type}
+                renderer = Carbon.Notification:Backend {
+                    content = ${Carbon.Backend.translate('noType', 'The prototype for the rendering is not defined', [], 'Main', 'Carbon.GeoMap')}
+                }
+            }
+            wrongType {
+                condition = Neos.Fusion:CanRender {
+                    type = ${props.type}
+                    @process.negate = ${!value}
+                }
+                renderer = Carbon.Notification:Backend {
+                    content = ${Carbon.Backend.translate('wrongType', 'The prottype <code>{0}</code> could not be found', [props.type], 'Main', 'Carbon.GeoMap')}
+                }
+            }
+            noCoordinates {
+                condition = ${!Carbon.Array.length(props.coordinates)}
+                renderer = Carbon.Notification:Backend {
+                    content = ${Carbon.Backend.translate('noAddress', 'No address has been created yet', [], 'Main', 'Carbon.GeoMap')}
+                }
+            }
+            default {
+                condition = true
+                renderer = Neos.Fusion:Renderer {
+                    type = ${props.type}
+                    element.@apply.data = ${props}
+                }
+            }
         }
     }
 

@@ -5,19 +5,13 @@ prototype(Carbon.GeoMap:Presentation.Map) < prototype(Neos.Fusion:Component) {
     additionalClass = null
 
     aspectRatio = '16 / 9'
-    mapStyle = null
+    effect = null
 
     js = null
     css = null
+    zoom = null
 
     coordinates = null
-
-    settings = Neos.Fusion:DataStructure {
-        @process.filter = ${Array.filter(value)}
-    }
-
-
-    @if.hasContent = ${this.content}
 
     renderer = Neos.Fusion:Component {
         @apply.props = ${props}
@@ -26,15 +20,12 @@ prototype(Carbon.GeoMap:Presentation.Map) < prototype(Neos.Fusion:Component) {
         _sandstormCookiePunchIsInstalled = ${Configuration.setting('Neos.Neos.fusion.autoInclude')['Sandstorm.CookiePunch']}
         dataNeverBlock = ${!!this._sandstormCookiePunchIsInstalled}
 
-        mapData = Neos.Fusion:DataStructure {
-            center = ${Carbon.Array.check(props.coordinates) ? Carbon.GeoMap.centerFromCoordinates(props.coordinates) : null}
-        }
-
+        center = ${Carbon.Array.check(props.coordinates) ? Carbon.GeoMap.centerFromCoordinates(props.coordinates) : null}
         renderer = afx`
             <div
-                style="visibility: hidden"
                 class={Carbon.String.merge('carbon-geomap', props.class, props.additionalClass)}
-                data-map={Json.stringify(Array.filter(Array.concat(props.mapData, props.settings)))}
+                data-center={Json.stringify(props.center)}
+                data-zoom={props.zoom}
             >
                 <link @if.set={props.css} rel="stylesheet" href={props.css} data-slipstream />
                 <script
@@ -42,13 +33,13 @@ prototype(Carbon.GeoMap:Presentation.Map) < prototype(Neos.Fusion:Component) {
                     src={props.js}
                     data-never-block={props.dataNeverBlock}
                     data-slipstream defer
-                    data-settings={props.globalSettings ? Json.stringify(props.globalSettings) : null}
                 ></script>
                 <div
-                    class={BEM.modifier('carbon-geomap__canvas', props.mapStyle)}
+                    class="carbon-geomap__canvas"
+                    data-effect={Type.isString(props.effect) ? props.effect : null}
                     style={'aspect-ratio:' + props.aspectRatio}>
-                    {props.content}
                 </div>
+                <div class="carbon-geomap__addresses" @if={props.content}>{props.content}</div>
             </div>
         `
     }

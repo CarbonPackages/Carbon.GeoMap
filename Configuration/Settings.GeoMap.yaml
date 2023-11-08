@@ -1,3 +1,4 @@
 Carbon:
   GeoMap:
     defaultCountry: CH # ISO-Code from country
+    defaultPinColor: '#009fe3' # Hex-Color

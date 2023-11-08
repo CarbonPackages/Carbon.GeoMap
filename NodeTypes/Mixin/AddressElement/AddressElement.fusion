@@ -8,8 +8,7 @@ prototype(Carbon.GeoMap:Mixin.AddressElement) < prototype(Neos.Neos:ContentCompo
     renderPopup = ${q(node).property('renderPopup')}
     renderAddress = ${q(node).property('renderAddress')}
     renderCountry = ${q(node).property('renderCountry')}
-    editable = ${node.context.inBackend}
-
+    pinColor = ${q(node).property('pinColor')}
 
     type = 'Carbon.GeoMap:Presentation.Address'
 

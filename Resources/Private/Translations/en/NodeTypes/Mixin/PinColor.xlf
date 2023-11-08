@@ -3,8 +3,8 @@
     xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file original="" product-name="Carbon.GeoMap" source-language="en" datatype="plaintext">
         <body>
-            <trans-unit id="properties.maxZoom" xml:space="preserve">
-                <source>Maxium zoom</source>
+            <trans-unit id="properties.pinColor" xml:space="preserve">
+                <source>Pin color</source>
             </trans-unit>
         </body>
     </file>

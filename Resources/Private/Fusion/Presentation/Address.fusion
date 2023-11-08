@@ -12,6 +12,10 @@ prototype(Carbon.GeoMap:Presentation.Address) < prototype(Neos.Fusion:Component)
     renderAddress = true
     renderCountry = true
     renderContentAfterAddress = true
+    enableRouteLink = false
+
+    pinColor = null
+    pinColor.@process.fallback = ${value || Configuration.setting('Carbon.GeoMap.defaultPinColor')}
 
     _hasCoords = ${this.location && this.location.lat && this.location.lng}
 
@@ -26,17 +30,30 @@ prototype(Carbon.GeoMap:Presentation.Address) < prototype(Neos.Fusion:Component)
             class={Carbon.String.merge('carbon-geomap-coordinate', props.class)}
             style={props.maxWith ? 'max-width:' + props.maxWith : null}
             data-coordinate={Json.stringify(props.location)}
+            data-pin-color={props.pinColor}
         >
-            {props.content && !props.renderContentAfterAddress && props.renderPopup ? props.content : null}
-            <address class='carbon-geomap-address' @if={props.renderPopup && props.renderAddress && (props.name || props.street || props.city || props.country)}>
-                <strong @if={props.name} class='carbon-geomap-address__name'>{props.name} </strong>
-                <span @if={props.street} class='carbon-geomap-address__street'>{props.street} </span>
-                <span @if={props.city} class='carbon-geomap-address__city'>{props.city} </span>
-                <span @if={props.country && props.renderCountry} class='carbon-geomap-address__country'>
-                    {Translation.translate(props.country, String.toUpperCase(props.country), [], 'Countries', 'Carbon.GeoMap')}
-                </span>
-            </address>
-            {props.content && props.renderContentAfterAddress && props.renderPopup ? props.content : null}
+            <Neos.Fusion:Fragment @if={props.renderPopup}>
+                {props.content && !props.renderContentAfterAddress ? props.content : null}
+                <address class='carbon-geomap-address' @if={props.renderAddress && (props.name || props.street || props.city || props.country)}>
+                    <strong @if={props.name} class='carbon-geomap-address__name'>{props.name} </strong>
+                    <span @if={props.street} class='carbon-geomap-address__street'>{props.street} </span>
+                    <span @if={props.city} class='carbon-geomap-address__city'>{props.city} </span>
+                    <span @if={props.country && props.renderCountry} class='carbon-geomap-address__country'>
+                        {Translation.translate(props.country, String.toUpperCase(props.country), [], 'Countries', 'Carbon.GeoMap')}
+                    </span>
+                </address>
+                {props.content && props.renderContentAfterAddress ? props.content : null}
+                <a
+                    @if={props.enableRouteLink}
+                    href={"https://www.google.com/maps/dir//'" + props.location.lat + "," + props.location.lng + "'"}
+                    target='_blank'
+                    rel='noopener noreferrer nofollow'
+                    class='carbon-geomap-route'
+                    title={I18n.translate('openRoute', 'Open route to this place on Google Maps', [], 'Main', 'Carbon.GeoMap')}
+                >
+                    {I18n.translate('route', 'Route', [], 'Main', 'Carbon.GeoMap')}
+                </a>
+            </Neos.Fusion:Fragment>
         </Neos.Fusion:Augmenter>
     `
 }
