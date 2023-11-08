@@ -1,12 +1,5 @@
 'Carbon.GeoMap:Mixin.Text':
   abstract: true
-  ui:
-    inspector:
-      groups:
-        text:
-          label: i18n
-          icon: file-alt
-          position: 30
   properties:
     text:
       type: string
@@ -14,8 +7,8 @@
         label: i18n
         reloadIfChanged: true
         inspector:
-          group: text
-          position: 10
+          group: settings
+          position: end
           editor: Neos.Neos/Inspector/Editors/RichTextEditor
           editorOptions:
             placeholder: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'

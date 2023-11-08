@@ -8,7 +8,7 @@
         reloadPageIfChanged: true
         inspector:
           group: address
-          position: end
+          position: 110
           editor: 'Carbon.GeoMapEditor/Editor'
           hidden: 'ClientEval: node.properties.location && node.properties.location.lat && node.properties.location.lng ? false : true'
           editorOptions:

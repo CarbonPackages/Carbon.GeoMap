@@ -8,7 +8,7 @@
         reloadPageIfChanged: true
         inspector:
           group: address
-          position: end
+          position: 120
           editor: 'Shel.Neos.ColorPicker/ColorPickerEditor'
           editorOptions:
             mode: 'hex'

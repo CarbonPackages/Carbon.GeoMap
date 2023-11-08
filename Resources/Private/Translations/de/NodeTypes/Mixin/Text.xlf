@@ -3,13 +3,9 @@
     xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file original="" product-name="Carbon.GeoMap" source-language="en" target-language="de" datatype="plaintext">
         <body>
-            <trans-unit id="groups.text" xml:space="preserve">
-                <source>Additional text</source>
-                <target>Zusätzlicher Text</target>
-            </trans-unit>
             <trans-unit id="properties.text" xml:space="preserve">
-                <source>Edit text</source>
-                <target>Text editieren</target>
+                <source>Additional text in the popup</source>
+                <target>Zusätzlicher Text in dem Popup</target>
             </trans-unit>
         </body>
     </file>
