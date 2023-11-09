@@ -92,7 +92,7 @@ class GeocodingService
      */
     public function geocodeLatLngFromAddress(string $address): ?array
     {
-        $url = 'https://nominatim.openstreetmap.org/search.php?q=' . urlencode($address) . '&limit=1&format=jsonv2';
+        $url = 'https://nominatim.openstreetmap.org/search?q=' . urlencode($address) . '&limit=1&format=jsonv2';
         $browser = new Browser();
         $browser->setRequestEngine(new CurlEngine());
         $response = $browser->request($url);
