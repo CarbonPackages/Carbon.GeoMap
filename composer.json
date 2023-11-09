@@ -18,6 +18,7 @@
     ],
     "require": {
         "neos/neos": "^7.3 || ^8.0",
+        "sitegeist/slipstream": "^2.0",
         "carbon/notification": "^2.1",
         "carbon/geomapeditor": "^0.1.1",
         "carbon/rangeeditor": "^0.1",
