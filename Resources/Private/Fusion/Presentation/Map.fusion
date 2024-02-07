@@ -13,10 +13,12 @@ prototype(Carbon.GeoMap:Presentation.Map) < prototype(Neos.Fusion:Component) {
 
     coordinates = null
 
-    // https://github.com/sandstorm/Sandstorm.CookiePunch is installed
-    _sandstormCookiePunchIsInstalled = ${Configuration.setting('Neos.Neos.fusion.autoInclude')['Sandstorm.CookiePunch']}
-    dataNeverBlock = ${!!this._sandstormCookiePunchIsInstalled}
     center = ${Carbon.Array.check(this.coordinates) ? Carbon.GeoMap.centerFromCoordinates(this.coordinates) : null}
+    slipstream = Neos.Fusion:DataStructure {
+        css = ${Configuration.setting('Carbon.GeoMap.slipstream.css')}
+        js = ${Configuration.setting('Carbon.GeoMap.slipstream.js')}
+        mjs = ${Configuration.setting('Carbon.GeoMap.slipstream.mjs')}
+    }
 
     renderer = afx`
         <div
@@ -24,18 +26,23 @@ prototype(Carbon.GeoMap:Presentation.Map) < prototype(Neos.Fusion:Component) {
             data-center={Json.stringify(props.center)}
             data-zoom={props.zoom}
         >
-            <link @if.set={props.css} rel="stylesheet" href={props.css} data-slipstream />
+            <link
+                @if.set={props.css}
+                rel="stylesheet"
+                href={props.css}
+                data-slipstream={props.slipstream.css}
+            />
             <script
                 @if.set={props.js}
                 src={props.js}
-                data-never-block={props.dataNeverBlock}
-                data-slipstream defer
+                data-slipstream={props.slipstream.js}
+                defer
             ></script>
             <script
                 @if.set={props.mjs}
                 src={props.mjs}
-                data-never-block={props.dataNeverBlock}
-                data-slipstream defer
+                data-slipstream={props.slipstream.mjs}
+                defer
                 type="module"
             ></script>
             <div
