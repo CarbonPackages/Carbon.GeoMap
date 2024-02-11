@@ -20,31 +20,25 @@ prototype(Carbon.GeoMap:Presentation.Map) < prototype(Neos.Fusion:Component) {
         mjs = ${Configuration.setting('Carbon.GeoMap.slipstream.mjs')}
     }
 
+    // @internal Move to @private if minimal Neos requirement is 8.3 or higher
+    _fileLoader = ${{js: this.js, mjs: this.mjs, css: this.css, slipstream: this.slipstream}}
+    _fileLoader.@process.convert = Carbon.FileLoader:Component {
+        slipstream = ${value.slipstream}
+        js = ${value.js}
+        mjs = ${value.mjs}
+        css = ${value.css}
+    }
+    _fileLoaderAsAttributes = ${!Type.isString(this._fileLoader)}
+
     renderer = afx`
         <div
             class={Carbon.String.merge("carbon-geomap", props.class, props.additionalClass)}
             data-center={Json.stringify(props.center)}
             data-zoom={props.zoom}
+            {...(props._fileLoaderAsAttributes ? props._fileLoader : {})}
+            {...props.attributes}
         >
-            <link
-                @if.set={props.css}
-                rel="stylesheet"
-                href={props.css}
-                data-slipstream={props.slipstream.css}
-            />
-            <script
-                @if.set={props.js}
-                src={props.js}
-                data-slipstream={props.slipstream.js}
-                defer
-            ></script>
-            <script
-                @if.set={props.mjs}
-                src={props.mjs}
-                data-slipstream={props.slipstream.mjs}
-                defer
-                type="module"
-            ></script>
+            {props._fileLoaderAsAttributes ? '' : props._fileLoader}
             <div
                 class="carbon-geomap__canvas"
                 data-effect={Type.isString(props.effect) ? props.effect : null}
