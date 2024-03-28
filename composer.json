@@ -23,7 +23,7 @@
         "carbon/rangeeditor": "^0.1",
         "carbon/fileloader": "^0.1",
         "carbon/eel": "^2.7",
-        "shel/neos-colorpicker": "^1.5"
+        "carbon/colorpicker-oklch": "^0.1"
     },
     "autoload": {
         "psr-4": {

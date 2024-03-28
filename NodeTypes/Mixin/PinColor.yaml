@@ -9,10 +9,7 @@
         inspector:
           group: address
           position: 120
-          editor: 'Shel.Neos.ColorPicker/ColorPickerEditor'
+          editor: 'Carbon.ColorPicker/OKLCH'
           editorOptions:
             mode: 'hex'
-            picker: true
-            fields: true
-            presetColors: false
-            allowEmpty: true
+            collapsed: true
