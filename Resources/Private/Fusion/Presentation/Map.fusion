@@ -22,25 +22,30 @@ prototype(Carbon.GeoMap:Presentation.Map) < prototype(Neos.Fusion:Component) {
         mjs = ${Configuration.setting('Carbon.GeoMap.slipstream.mjs')}
     }
 
-    // @internal Move to @private if minimal Neos requirement is 8.3 or higher
-    _fileLoader = ${{js: this.js, mjs: this.mjs, css: this.css, slipstream: this.slipstream}}
-    _fileLoader.@process.convert = Carbon.FileLoader:Component {
-        slipstream = ${value.slipstream}
-        js = ${value.js}
-        mjs = ${value.mjs}
-        css = ${value.css}
+    @private {
+        fileLoader = Carbon.FileLoader:Component {
+            slipstream = ${props.slipstream}
+            js = ${props.js}
+            mjs = ${props.mjs}
+            css = ${props.css}
+        }
+        fileLoaderAsAttributes = ${!Type.isString(private.fileLoader)}
+        reload = afx`
+            <button class="carbon-geomap__reload-button" @if={props.showReloadButton && props.reloadFunction} type="button" onClick={props.reloadFunction}>
+                {Carbon.Backend.translate('reloadMap', 'Reload map', [], 'Main', 'Carbon.GeoMap')}
+            </button>
+        `
     }
-    _fileLoaderAsAttributes = ${!Type.isString(this._fileLoader)}
 
     renderer = afx`
         <div
             class={Carbon.String.merge("carbon-geomap", props.class, props.additionalClass)}
             data-center={Json.stringify(props.center)}
             data-zoom={props.zoom}
-            {...(props._fileLoaderAsAttributes ? props._fileLoader : {})}
+            {...(private.fileLoaderAsAttributes ? private.fileLoader : {})}
             {...props.attributes}
         >
-            {props._fileLoaderAsAttributes ? '' : props._fileLoader}
+            {private.fileLoaderAsAttributes ? '' : private.fileLoader}
             <div
                 class="carbon-geomap__canvas"
                 data-effect={Type.isString(props.effect) ? props.effect : null}

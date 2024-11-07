@@ -1,2 +1,2 @@
 include: **/*.fusion
-include: ../../../NodeTypes/**/*.fusion
+include: nodetypes://Carbon.GeoMap/**/*.fusion

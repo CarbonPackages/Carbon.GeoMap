@@ -17,16 +17,16 @@ prototype(Carbon.GeoMap:Presentation.Address) < prototype(Neos.Fusion:Component)
     pinColor = null
     pinColor.@process.fallback = ${value || Configuration.setting('Carbon.GeoMap.defaultPinColor')}
 
-    _hasCoords = ${this.location && this.location.lat && this.location.lng}
+    @private.hasCoords = ${props.location && props.location.lat && props.location.lng}
 
     renderer = afx`
         <Carbon.Notification:Backend
-            @if={!props._hasCoords}
+            @if={!private.hasCoords}
             type='alert'
             content={I18n.translate('noCoordinates', 'No address could be found with the given data', [], 'Main', 'Carbon.GeoMap')}
         />
         <Neos.Fusion:Augmenter
-            @if={props._hasCoords}
+            @if={private.hasCoords}
             class={Carbon.String.merge('carbon-geomap-coordinate', props.class)}
             style={props.maxWith ? 'max-width:' + props.maxWith : null}
             data-coordinate={Json.stringify(props.location)}
