@@ -21,6 +21,9 @@
             <trans-unit id="route" xml:space="preserve">
                 <source>Route</source>
             </trans-unit>
+            <trans-unit id="reloadMap" xml:space="preserve">
+                <source>Reload map</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

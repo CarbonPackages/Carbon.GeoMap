@@ -2,6 +2,8 @@ prototype(Carbon.GeoMap:Mixin.MapElement) < prototype(Neos.Neos:ContentComponent
     # This needs to defined
     type = null
 
+    showReloadButton = ${node.context.inBackend}
+
     addresses = ${q(node).children('[instanceof Carbon.GeoMap:Mixin.Address]') || []}
 
     zoom = ${q(node).property('zoom')}

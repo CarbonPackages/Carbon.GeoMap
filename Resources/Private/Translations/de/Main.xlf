@@ -27,6 +27,10 @@
                 <source>Route</source>
                 <target>Route</target>
             </trans-unit>
+            <trans-unit id="reloadMap" xml:space="preserve">
+                <source>Reload map</source>
+                <target>Karte neu laden</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

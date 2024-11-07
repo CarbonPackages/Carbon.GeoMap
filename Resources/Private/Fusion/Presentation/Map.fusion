@@ -11,6 +11,8 @@ prototype(Carbon.GeoMap:Presentation.Map) < prototype(Neos.Fusion:Component) {
     css = null
     zoom = null
 
+    showReloadButton = false
+
     coordinates = null
 
     center = ${Carbon.Array.check(this.coordinates) ? Carbon.GeoMap.centerFromCoordinates(this.coordinates) : null}
@@ -44,6 +46,9 @@ prototype(Carbon.GeoMap:Presentation.Map) < prototype(Neos.Fusion:Component) {
                 data-effect={Type.isString(props.effect) ? props.effect : null}
                 style={"aspect-ratio:" + props.aspectRatio}>
             </div>
+            <button class="carbon-geomap__reload-button" @if={props.showReloadButton} type="button" onClick="window.location.reload()">
+                {Carbon.Backend.translate('reloadMap', 'Reload map', [], 'Main', 'Carbon.GeoMap')}
+            </button>
             <div class="carbon-geomap__addresses" @if={props.content}>{props.content}</div>
         </div>
     `
