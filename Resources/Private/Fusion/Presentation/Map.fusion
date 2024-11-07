@@ -12,6 +12,8 @@ prototype(Carbon.GeoMap:Presentation.Map) < prototype(Neos.Fusion:Component) {
     zoom = null
 
     showReloadButton = false
+    reloadFunction = ${Configuration.setting('Carbon.GeoMap.reloadFunction')}
+    reloadButtonLocation = ${Configuration.setting('Carbon.GeoMap.reloadButtonLocation')}
 
     coordinates = null
 
@@ -49,11 +51,11 @@ prototype(Carbon.GeoMap:Presentation.Map) < prototype(Neos.Fusion:Component) {
             <div
                 class="carbon-geomap__canvas"
                 data-effect={Type.isString(props.effect) ? props.effect : null}
-                style={"aspect-ratio:" + props.aspectRatio}>
+                style={"aspect-ratio:" + props.aspectRatio}
+            >
+                {props.reloadButtonLocation == 'inside' ? private.reload : ''}
             </div>
-            <button class="carbon-geomap__reload-button" @if={props.showReloadButton} type="button" onClick="window.location.reload()">
-                {Carbon.Backend.translate('reloadMap', 'Reload map', [], 'Main', 'Carbon.GeoMap')}
-            </button>
+            {props.reloadButtonLocation == 'after' ? private.reload : ''}
             <div class="carbon-geomap__addresses" @if={props.content}>{props.content}</div>
         </div>
     `

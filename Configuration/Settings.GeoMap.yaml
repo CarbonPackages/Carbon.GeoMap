@@ -1,7 +1,9 @@
 Carbon:
   GeoMap:
+    reloadFunction: 'window.location.reload()' # JavaScript function to reload the map
+    reloadButtonLocation: 'after' # after or inside
     defaultCountry: CH # ISO-Code from country
-    defaultPinColor: '#009fe3' # Hex-Color
+    defaultPinColor: '#009fe3' # Any valid CSS color
     slipstream:
       css: true
       js: true
