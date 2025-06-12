@@ -20,7 +20,7 @@
         "neos/neos": "^8.3",
         "carbon/notification": "^2.1",
         "carbon/geomapeditor": "^0.1.1",
-        "carbon/rangeeditor": "^0.1",
+        "carbon/rangeeditor": "^0.1 || ^0.2",
         "carbon/fileloader": "^0.1",
         "carbon/eel": "^2.7",
         "carbon/colorpicker-oklch": "^1.0"
